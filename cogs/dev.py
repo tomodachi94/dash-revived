@@ -64,11 +64,27 @@ class DevCommands(commands.Cog, name="Developer Commands"):
     async def listcogs(self, ctx):
         """
         Returns a list of all enabled commands.
+
+        No args.
         """
         base_string = "```css\n"  # Gives some styling to the list (on pc side)
         base_string += "\n".join([str(cog) for cog in self.bot.extensions])
         base_string += "\n```"
         await ctx.send(base_string)
+
+    @commands.command(name="shutdown", aliases=["s", "sd"])
+    @commands.has_permissions(kick_members=True)
+    async def shutdown(self, ctx):
+        """
+        Shuts down the bot.
+
+        No args.
+        """
+    async def shutdown(ctx):
+        await ctx.send("Shutting down... G'night, Mom!")
+        await ctx.bot.logout()
+
+
 
 
 def setup(bot):
